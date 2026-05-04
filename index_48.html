@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soulmate Academy — Reconnect. Deepen. Transform.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  /* Palette: peace, nature, Bali — warm stone, sage, deep teal, soft gold */
+  --stone:     #F5F0E8;
+  --stone-mid: #EDE6D6;
+  --parchment: #FAF7F2;
+  --sage:      #6B8F71;
+  --sage-deep: #3D5C42;
+  --forest:    #1E3325;
+  --teal:      #2A5C5A;
+  --teal-mid:  #4A8C89;
+  --teal-pale: #D4E8E7;
+  --gold:      #C4953A;
+  --gold-pale: #F0DFB4;
+  --ember:     #B85C38;
+  --charcoal:  #1A1A1A;
+  --ink:       #2C2C2C;
+  --mist:      #8A9A8E;
+  --light:     #D8D0C4;
+
+  --display: 'Playfair Display', Georgia, serif;
+  --body:    'DM Sans', sans-serif;
+
+  --radius: 3px;
+  --shadow: 0 8px 40px rgba(30,51,37,0.10);
+  --shadow-lg: 0 20px 60px rgba(30,51,37,0.15);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--body);
+  background: var(--parchment);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────────────── */
+nav {
+  position: fixed; top: 52px; left: 0; right: 0; z-index: 200;
+  padding: 1.1rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s, box-shadow 0.3s, top 0.35s ease;
+}
+nav.solid {
+  background: rgba(250,247,242,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--light);
+  box-shadow: 0 2px 20px rgba(30,51,37,0.06);
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 1.25rem; font-weight: 500;
+  color: #fff; text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.5s;
+}
+nav.solid .nav-logo { color: var(--forest); }
+.nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  color: rgba(255,255,255,0.8); transition: color 0.3s;
+}
+nav.solid .nav-links a { color: var(--mist); }
+.nav-links a:hover { color: var(--gold) !important; }
+.nav-btn {
+  background: var(--gold) !important;
+  color: #fff !important;
+  padding: 0.5rem 1.4rem;
+  border-radius: 2px;
+  font-size: 0.75rem !important;
+}
+.nav-btn:hover { background: var(--ember) !important; }
+
+/* ─── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+/* Bali rice terrace texture overlay */
+.hero-texture {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(106,143,113,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(42,92,90,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(196,149,58,0.08) 0%, transparent 40%);
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(10,20,12,0.3) 0%,
+    rgba(10,20,12,0.1) 50%,
+    rgba(10,20,12,0.7) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 880px; padding: 2rem;
+  animation: riseIn 1.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-pill {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 1px solid rgba(196,149,58,0.5);
+  padding: 0.35rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold-pale);
+  margin-bottom: 2rem;
+}
+.hero-pill span { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 400; color: #fff;
+  line-height: 1.1; margin-bottom: 1.5rem;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+}
+.hero h1 em { font-style: italic; color: var(--gold-pale); }
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.18rem);
+  color: rgba(255,255,255,0.72);
+  max-width: 600px; margin: 0 auto 2.8rem;
+  line-height: 1.8;
+}
+.hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold); color: #fff;
+  padding: 1rem 2.4rem; border-radius: var(--radius);
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  transition: all 0.3s; display: inline-block;
+}
+.btn-gold:hover { background: #a07a28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,149,58,0.35); }
+.btn-ghost {
+  border: 1.5px solid rgba(255,255,255,0.45); color: #fff;
+  padding: 1rem 2.4rem; border-radius: var(--radius);
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  transition: all 0.3s; display: inline-block;
+  backdrop-filter: blur(4px);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute; bottom: 2rem; right: 3rem;
+  z-index: 1; pointer-events: none;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+}
+.scroll-bar {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+.scroll-txt { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+/* ─── SOCIAL PROOF BAR ──────────────────────────────── */
+.proof-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  text-align: center; padding: 2.2rem 3rem; gap: 1rem;
+  background: #0f1f14;
+}
+.proof-num {
+  font-family: var(--display);
+  font-size: 2.6rem; font-weight: 400; color: var(--gold);
+  display: block; line-height: 1;
+}
+.proof-label {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-top: 0.3rem;
+}
+
+/* ─── SECTIONS ──────────────────────────────────────── */
+.section { padding: 7rem 3rem; }
+.section-inner { max-width: 1140px; margin: 0 auto; }
+.eyebrow {
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--teal-mid);
+  margin-bottom: 1rem; display: block;
+}
+.headline {
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 400; line-height: 1.15;
+  color: var(--forest); margin-bottom: 1.4rem;
+}
+.headline em { font-style: italic; color: var(--ember); }
+.lead {
+  font-size: 1rem; color: var(--mist);
+  line-height: 1.8; max-width: 640px;
+}
+
+/* ─── ANNOUNCEMENT BANNER ────────────────────────────── */
+.announcement {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+  padding: 0.85rem 3rem;
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.5rem; flex-wrap: wrap; text-align: center;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 201;
+  height: 52px;
+  transition: transform 0.35s ease;
+}
+.announcement.hidden { transform: translateY(-100%); }
+.ann-badge {
+  background: var(--gold); color: #fff;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; padding: 0.3rem 0.8rem;
+  border-radius: 2px; white-space: nowrap;
+}
+.ann-text { color: #fff; font-size: 0.92rem; }
+.ann-text strong { font-weight: 600; }
+.ann-link {
+  color: var(--gold-pale); font-size: 0.82rem; font-weight: 500;
+  text-decoration: underline; white-space: nowrap;
+}
+
+/* ─── WHO FOR ─────────────────────────────────────────── */
+.who-section { background: var(--stone); }
+.who-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.who-card {
+  background: var(--parchment); border-radius: var(--radius);
+  border: 1px solid var(--light); overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.who-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.who-card-img {
+  height: 260px; position: relative;
+  overflow: hidden;
+}
+.who-card-img-inner {
+  width: 100%; height: 100%;
+  transition: transform 0.6s;
+}
+.who-card:hover .who-card-img-inner { transform: scale(1.05); }
+/* Gradient photo stand-ins — beautiful & thematic */
+.who-card-body { padding: 1.8rem; }
+.who-tag {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ember);
+  margin-bottom: 0.5rem;
+}
+.who-card h3 {
+  font-family: var(--display);
+  font-size: 1.45rem; font-weight: 500;
+  color: var(--forest); margin-bottom: 0.7rem; line-height: 1.2;
+}
+.who-card p { font-size: 0.9rem; color: var(--mist); line-height: 1.7; }
+
+/* ─── QUOTE BAND ─────────────────────────────────────── */
+.quote-band {
+  padding: 6rem 3rem; text-align: center;
+  position: relative; overflow: hidden;
+  background: #0a1a0d;
+}
+.quote-band::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(5, 12, 7, 0.55);
+  z-index: 0;
+}
+.quote-band-bg {
+  position: absolute; inset: 0;
+}
+.quote-band-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; }
+.quote-mark-big {
+  font-family: var(--display); font-size: 6rem; line-height: 0.6;
+  color: var(--gold); opacity: 0.8; display: block; margin-bottom: 1.8rem;
+}
+.quote-q {
+  font-family: var(--display);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 400; font-style: italic;
+  color: #ffffff; line-height: 1.5;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+.quote-rule { width: 48px; height: 1px; background: var(--gold); margin: 0 auto 1rem; }
+.quote-attr { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+/* ─── PROGRAM OVERVIEW ─────────────────────────────────── */
+.programs-section { background: var(--parchment); }
+.programs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.prog-card {
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid var(--light);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s;
+  text-decoration: none; color: inherit;
+}
+.prog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.prog-card-top {
+  height: 260px; position: relative; overflow: hidden;
+}
+.prog-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--forest); color: #fff;
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.28rem 0.7rem; border-radius: 2px;
+}
+.prog-badge-gold { background: var(--gold) !important; }
+.prog-card-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+.prog-tag { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 0.4rem; }
+.prog-card h3 { font-family: var(--display); font-size: 1.5rem; font-weight: 500; color: var(--forest); margin-bottom: 0.7rem; }
+.prog-card p { font-size: 0.88rem; color: var(--mist); line-height: 1.7; flex: 1; margin-bottom: 1.5rem; }
+.prog-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1.2rem; border-top: 1px solid var(--stone); }
+.prog-price { font-family: var(--display); font-size: 1.6rem; font-weight: 400; color: var(--forest); }
+.prog-price small { font-size: 0.8rem; font-family: var(--body); font-weight: 300; color: var(--mist); }
+.prog-cta { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ember); }
+
+/* ─── CURRICULUM ────────────────────────────────────── */
+.curriculum-section { background: var(--stone); }
+.curr-intro { max-width: 660px; margin-bottom: 3.5rem; }
+.curr-intro p { font-size: 1rem; color: var(--mist); line-height: 1.8; }
+.curr-section { margin-bottom: 2.5rem; }
+.curr-header {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  padding: 1rem 1.6rem; border-radius: var(--radius);
+  margin-bottom: 1.2rem;
+}
+.ch-1 { background: linear-gradient(135deg, var(--forest) 0%, var(--sage-deep) 100%); }
+.ch-2 { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%); }
+.ch-3 { background: linear-gradient(135deg, #6b3a20 0%, var(--ember) 100%); }
+.curr-sec-tag {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); background: rgba(0,0,0,0.2);
+  padding: 0.2rem 0.6rem; border-radius: 2px; white-space: nowrap;
+}
+.curr-sec-name { font-family: var(--display); font-size: 1rem; font-weight: 400; color: #fff; flex: 1; }
+.curr-sec-dur { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); white-space: nowrap; }
+.curr-modules { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+.curr-mod {
+  background: var(--parchment); border: 1px solid var(--light);
+  border-radius: var(--radius); padding: 1.4rem 1.6rem;
+  display: flex; gap: 1.2rem; align-items: flex-start;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.curr-mod:hover { border-color: var(--sage); transform: translateY(-2px); }
+.curr-mod-num {
+  font-family: var(--display); font-size: 1.8rem; font-weight: 400;
+  color: var(--teal-pale); line-height: 1; min-width: 2.5rem;
+}
+.curr-mod h4 { font-family: var(--display); font-size: 1rem; font-weight: 500; color: var(--forest); margin-bottom: 0.3rem; }
+.curr-mod p { font-size: 0.82rem; color: var(--mist); line-height: 1.6; }
+
+/* ─── HOW IT WORKS ──────────────────────────────────── */
+.how-section { background: var(--parchment); }
+.how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+.how-img-wrap {
+  border-radius: 4px; overflow: hidden;
+  height: 520px; position: relative;
+}
+.how-img-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(5,15,8,0.92) 0%, rgba(5,15,8,0.5) 50%, transparent 100%);
+  padding: 2rem 2rem 2.5rem;
+}
+.how-img-caption { font-family: var(--display); font-size: 1.15rem; color: #fff; font-style: italic; line-height: 1.5; text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+.how-items { display: flex; flex-direction: column; gap: 2rem; }
+.how-item { display: flex; gap: 1.4rem; align-items: flex-start; }
+.how-icon {
+  width: 46px; height: 46px; flex-shrink: 0;
+  background: var(--teal-pale); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-top: 0.1rem;
+}
+.how-item h4 { font-family: var(--display); font-size: 1.05rem; font-weight: 500; color: var(--forest); margin-bottom: 0.3rem; }
+.how-item p { font-size: 0.88rem; color: var(--mist); line-height: 1.65; }
+
+/* ─── PHILOSOPHY ─────────────────────────────────────── */
+.philosophy-section { background: var(--forest); padding: 0; }
+/* Full-width quote band above philosophy content */
+.phil-quote-band {
+  position: relative; overflow: hidden;
+  min-height: 420px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 6rem 3rem;
+}
+.phil-quote-bg {
+  position: absolute; inset: 0;
+  background-size: cover !important;
+  background-position: center !important;
+  opacity: 1;
+}
+.phil-quote-overlay {
+  position: absolute; inset: 0;
+  background: rgba(5,12,8,0.62);
+  z-index: 1;
+}
+.phil-quote-inner {
+  position: relative; z-index: 2;
+  max-width: 820px; margin: 0 auto;
+}
+.phil-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+.phil-grid-solo { max-width: 860px; margin: 0 auto; width: 100%; }
+.phil-content { padding: 5rem; display: flex; flex-direction: column; justify-content: center; }
+.phil-content .eyebrow { color: var(--gold); }
+.phil-content .headline { color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+.phil-content .headline em { color: var(--gold); }
+.principles { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.8rem; }
+.principle { display: flex; gap: 1.2rem; padding-bottom: 1.8rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.principle:last-child { border: none; padding: 0; }
+.prin-num {
+  font-family: var(--display); font-size: 1.8rem; font-weight: 400;
+  color: var(--gold); opacity: 0.6; line-height: 1; flex-shrink: 0;
+}
+.principle h4 { font-family: var(--display); font-size: 1.05rem; font-weight: 500; color: #fff; margin-bottom: 0.3rem; }
+.principle p { font-size: 0.87rem; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+/* ─── BALI RETREAT HERO ─────────────────────────────── */
+.bali-hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: linear-gradient(135deg, #0d1f12 0%, #1a3020 60%, #0d1f12 100%);
+}
+.bali-hero-photo {
+  overflow: hidden; min-height: 100vh;
+}
+.bali-hero-photo img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.bali-hero-texture { display: none; }
+.bali-hero-overlay { display: none; }
+.bali-hero-bg { display: none; }
+.bali-content {
+  display: flex; align-items: center;
+  padding: 8rem 5rem 8rem 4rem;
+  position: relative;
+}
+.bali-offer-label {
+  position: absolute; left: 1.8rem; top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center center;
+  font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); white-space: nowrap;
+  font-family: var(--sans); font-weight: 500;
+}
+.bali-inner .eyebrow { color: var(--gold); }
+.bali-inner .headline { color: #fff; font-size: clamp(2.5rem, 5.5vw, 4.2rem); margin-bottom: 1.2rem; }
+.bali-inner .headline em { color: var(--gold); }
+.bali-tagline { font-size: 1.05rem; color: rgba(255,255,255,0.72); line-height: 1.8; margin-bottom: 2.5rem; }
+.bali-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-bottom: 3rem; }
+.bs-num { font-family: var(--display); font-size: 2.4rem; font-weight: 400; color: var(--gold); display: block; }
+.bs-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+.bali-june {
+  display: inline-flex; align-items: center; gap: 0.8rem;
+  background: rgba(196,149,58,0.15); border: 1px solid rgba(196,149,58,0.3);
+  padding: 0.7rem 1.4rem; border-radius: 2px; margin-bottom: 2rem;
+}
+.bali-june-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.bali-june span { font-size: 0.8rem; color: var(--gold-pale); letter-spacing: 0.1em; }
+
+/* ─── RETREAT DETAILS ──────────────────────────────── */
+.retreat-details { background: var(--stone); }
+.retreat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; margin-top: 3.5rem; }
+.day-card {
+  background: var(--parchment); border-radius: var(--radius);
+  border: 1px solid var(--light); overflow: hidden;
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.day-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.day-card-img { height: 200px; }
+.day-card-body { padding: 1.8rem; }
+.day-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember); margin-bottom: 0.5rem; }
+.day-card h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--forest); margin-bottom: 1rem; }
+.day-acts { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.day-acts li { font-size: 0.86rem; color: var(--mist); display: flex; gap: 0.6rem; line-height: 1.5; }
+.day-acts li::before { content: '◦'; color: var(--sage); flex-shrink: 0; }
+
+/* ─── INCLUDED ──────────────────────────────────────── */
+.included-section { background: var(--teal); }
+.inc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.2rem; margin-top: 3rem; }
+.inc-card { border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius); padding: 1.8rem; transition: border-color 0.3s, background 0.3s; }
+.inc-card:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.05); }
+.inc-icon { font-size: 1.6rem; margin-bottom: 0.8rem; display: block; }
+.inc-card h4 { font-family: var(--display); font-size: 1rem; font-weight: 500; color: #fff; margin-bottom: 0.35rem; }
+.inc-card p { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.55; }
+
+/* ─── LOCATIONS ─────────────────────────────────────── */
+.locations-section { background: var(--forest); }
+.loc-bali-feature {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  align-items: center; margin-top: 3rem;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius); padding: 3rem;
+}
+.loc-img { height: 380px; border-radius: var(--radius); overflow: hidden; }
+.loc-content { }
+.loc-content .headline { color: #fff; font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.loc-content .headline em { color: var(--gold); }
+.loc-content p { font-size: 0.92rem; color: rgba(255,255,255,0.65); line-height: 1.8; margin-top: 1rem; }
+.loc-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.loc-detail { background: rgba(255,255,255,0.05); padding: 1rem; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.08); }
+.loc-detail-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+.loc-detail-val { font-size: 0.92rem; color: rgba(255,255,255,0.8); }
+.loc-honeymoon {
+  margin-top: 2rem; background: rgba(196,149,58,0.12);
+  border: 1px solid rgba(196,149,58,0.25); border-radius: var(--radius); padding: 1.2rem;
+}
+.loc-honeymoon p { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+.loc-honeymoon strong { color: var(--gold-pale); }
+
+/* ─── PRICING ────────────────────────────────────────── */
+.pricing-section { background: var(--parchment); }
+.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.price-card {
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid var(--light); padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; position: relative;
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.price-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+.price-card.featured {
+  border-color: var(--gold); background: var(--forest);
+  transform: translateY(-8px); box-shadow: var(--shadow-lg);
+}
+.price-popular {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: #fff;
+  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 0.28rem 1rem; border-radius: 20px; white-space: nowrap;
+}
+.price-tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal-mid); margin-bottom: 0.8rem; }
+.price-card.featured .price-tag { color: var(--gold); }
+.price-card h3 { font-family: var(--display); font-size: 1.4rem; font-weight: 500; color: var(--forest); margin-bottom: 0.5rem; }
+.price-card.featured h3 { color: #fff; }
+.price-card .price-desc { font-size: 0.85rem; color: var(--mist); line-height: 1.6; margin-bottom: 1.8rem; flex: 1; }
+.price-card.featured .price-desc { color: rgba(255,255,255,0.55); }
+.price-amount { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.3rem; }
+.price-amount span:first-child { font-family: var(--display); font-size: 3rem; font-weight: 400; color: var(--forest); }
+.price-card.featured .price-amount span:first-child { color: #fff; }
+.price-amount small { font-size: 0.85rem; color: var(--mist); }
+.price-card.featured .price-amount small { color: rgba(255,255,255,0.45); }
+.price-context { font-size: 0.75rem; color: var(--mist); margin-bottom: 2rem; }
+.price-card.featured .price-context { color: rgba(255,255,255,0.4); }
+.price-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 2rem; }
+.price-list li { font-size: 0.86rem; color: var(--ink); display: flex; gap: 0.6rem; line-height: 1.4; }
+.price-list li::before { content: '✓'; color: var(--sage); font-weight: 700; flex-shrink: 0; }
+.price-card.featured .price-list li { color: rgba(255,255,255,0.75); }
+.price-card.featured .price-list li::before { color: var(--gold); }
+.btn-price {
+  display: block; text-align: center; padding: 0.9rem;
+  border-radius: var(--radius); text-decoration: none;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-price-outline { border: 1.5px solid var(--forest); color: var(--forest); }
+.btn-price-outline:hover { background: var(--forest); color: #fff; }
+.btn-price-gold { background: var(--gold); color: #fff; }
+.btn-price-gold:hover { background: #a07a28; }
+.pricing-note { text-align: center; margin-top: 2rem; font-size: 0.82rem; color: var(--mist); }
+.pricing-note a { color: var(--teal-mid); }
+
+/* ─── TESTIMONIALS ──────────────────────────────────── */
+.testimonials-section { background: var(--stone); }
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+.test-card {
+  background: var(--parchment); border-radius: var(--radius);
+  border-left: 3px solid var(--sage); padding: 2rem; position: relative;
+}
+.test-card::before {
+  content: '"'; font-family: var(--display); font-size: 5rem;
+  color: var(--stone-mid); position: absolute; top: -0.8rem; left: 1.5rem;
+  line-height: 1; pointer-events: none;
+}
+.test-q { font-family: var(--display); font-size: 1rem; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+.test-author strong { display: block; font-size: 0.85rem; color: var(--forest); font-weight: 600; margin-bottom: 0.15rem; }
+.test-author span { font-size: 0.75rem; color: var(--mist); }
+
+/* ─── WAITLIST FORM ──────────────────────────────────── */
+.waitlist-section {
+  background: var(--forest); padding: 7rem 3rem;
+  position: relative; overflow: hidden;
+}
+.waitlist-section::before {
+  content: '';
+  position: absolute; top: -50%; right: -20%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(42,92,90,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+.waitlist-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+.waitlist-header { text-align: center; max-width: 640px; margin: 0 auto 3.5rem; }
+.waitlist-header .headline { color: #fff; }
+.waitlist-header .headline em { color: var(--gold); }
+.waitlist-header p { color: rgba(255,255,255,0.55); font-size: 1rem; line-height: 1.8; margin-top: 0.8rem; }
+.form-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+}
+.form-notice {
+  background: rgba(196,149,58,0.12); border: 1px solid rgba(196,149,58,0.25);
+  border-radius: var(--radius); padding: 1rem 1.4rem;
+  display: flex; gap: 0.8rem; align-items: flex-start;
+  margin-bottom: 2rem;
+}
+.form-notice-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+.form-notice p { font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.form-notice strong { color: var(--gold-pale); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+.form-full { grid-column: 1 / -1; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.form-input, .form-select, .form-textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius); color: #fff;
+  font-family: var(--body); font-size: 0.92rem;
+  padding: 0.85rem 1rem;
+  transition: border-color 0.3s, background 0.3s;
+  width: 100%;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none; border-color: var(--gold);
+  background: rgba(255,255,255,0.09);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+.form-select option { background: var(--forest); color: #fff; }
+.form-textarea { resize: vertical; min-height: 120px; }
+.form-section-title {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.7);
+  grid-column: 1 / -1; border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 0.6rem; margin-top: 0.5rem;
+}
+.form-submit {
+  margin-top: 1.8rem; display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.btn-submit {
+  background: var(--gold); color: #fff;
+  padding: 1.1rem 3rem; border-radius: var(--radius);
+  border: none; cursor: pointer;
+  font-family: var(--body); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-submit:hover { background: #a07a28; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,149,58,0.35); }
+.form-privacy { font-size: 0.78rem; color: rgba(255,255,255,0.3); line-height: 1.5; }
+.form-success {
+  display: none; text-align: center; padding: 3rem;
+}
+.form-success-icon { font-size: 3rem; margin-bottom: 1rem; }
+.form-success h3 { font-family: var(--display); font-size: 1.8rem; color: #fff; margin-bottom: 0.8rem; }
+.form-success p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; }
+
+/* ─── FINAL CTA ──────────────────────────────────────── */
+.final-cta { background: var(--parchment); padding: 7rem 3rem; text-align: center; }
+.cta-inner { max-width: 600px; margin: 0 auto; }
+.cta-inner .headline { margin-bottom: 1rem; }
+.cta-inner .lead { margin: 0 auto 2.5rem; text-align: center; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-forest { background: var(--forest); color: #fff; padding: 1rem 2.4rem; border-radius: var(--radius); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.3s; }
+.btn-forest:hover { background: var(--sage-deep); }
+.btn-teal { background: var(--teal); color: #fff; padding: 1rem 2.4rem; border-radius: var(--radius); text-decoration: none; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.3s; }
+.btn-teal:hover { background: var(--teal-mid); }
+
+/* ─── GALLERY ─────────────────────────────────────────── */
+.gallery { display: grid; grid-template-columns: repeat(5,1fr); height: 300px; gap: 3px; }
+.gal-cell { overflow: hidden; }
+.gal-cell div { width: 100%; height: 100%; transition: transform 0.5s; filter: brightness(0.82); }
+.gal-cell:hover div { transform: scale(1.08); filter: brightness(1); }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer {
+  background: var(--charcoal); color: rgba(255,255,255,0.4);
+  padding: 3rem; text-align: center;
+}
+footer .fl { font-family: var(--display); font-size: 1.3rem; color: rgba(255,255,255,0.8); display: block; margin-bottom: 0.5rem; }
+footer p { font-size: 0.78rem; margin-top: 0.4rem; }
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { color: var(--gold); }
+.footer-links { display: flex; gap: 2rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
+.footer-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ─── REVEAL ANIMATIONS ──────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── MOBILE ─────────────────────────────────────────── */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .section { padding: 5rem 1.5rem; }
+  .proof-bar { grid-template-columns: repeat(2,1fr); }
+  .who-grid, .programs-grid, .retreat-grid, .inc-grid, .locations-section .loc-bali-feature,
+  .how-grid, .phil-grid, .pricing-grid, .test-grid, .curr-modules { grid-template-columns: 1fr; }
+  .bali-hero { grid-template-columns: 1fr; }
+  .bali-hero-photo { min-height: 300px; }
+  .phil-content { padding: 3rem 2rem; }
+  .bali-content { padding: 6rem 2rem; max-width: 100%; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-card { padding: 2rem 1.5rem; }
+  .gallery { grid-template-columns: repeat(3,1fr); height: 200px; }
+  .gal-cell:nth-child(4), .gal-cell:nth-child(5) { display: none; }
+  .loc-bali-feature { padding: 2rem; }
+  .loc-img { height: 240px; }
+  .price-card.featured { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announcement">
+  <span class="ann-badge">🌿 Now Open</span>
+  <span class="ann-text"><strong>Next Retreat: Bali, Indonesia — June 2026.</strong> 30 couples max. Waitlist now open.</span>
+  <a href="#waitlist" class="ann-link">Join the waitlist →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Soulmate Academy</a>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#retreat">The Retreat</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#waitlist" class="nav-btn">Join Waitlist</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Your Relationship Deserves<br>More Than <em>Good Enough</em></h1>
+    <p class="hero-sub">Soulmate Academy is a deep, evidence-based coaching experience for couples who are ready to stop surviving their relationship — and start truly living it. Together.</p>
+    <div class="hero-ctas">
+      <a href="#waitlist" class="btn-gold">Join the Bali Retreat Waitlist</a>
+      <a href="#programs" class="btn-ghost">Explore Programs</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span class="scroll-txt">Scroll</span>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<div class="proof-bar">
+  <div><span class="proof-num">2,400+</span><span class="proof-label">Couples guided</span></div>
+  <div><span class="proof-num">94%</span><span class="proof-label">Report lasting change</span></div>
+  <div><span class="proof-num">38</span><span class="proof-label">Countries represented</span></div>
+  <div><span class="proof-num">7</span><span class="proof-label">Years of practice</span></div>
+</div>
+
+<!-- WHO IT'S FOR -->
+<section class="section who-section" id="who">
+  <div class="section-inner">
+    <span class="eyebrow reveal">This is for you</span>
+    <h2 class="headline reveal">Designed for Couples at <em>Every Stage</em></h2>
+    <p class="lead reveal">Whether you're starting out, going deeper, or at a crossroads — the work is the same. Becoming more conscious, more present, and more genuinely connected.</p>
+    <div class="who-grid">
+      <div class="who-card reveal">
+        <div class="who-card-img"><div class="who-card-img-inner" style="background:url('https://images.unsplash.com/photo-1741377772412-b1bbbcb58896?w=700&q=85') center/cover no-repeat"></div></div>
+        <div class="who-card-body">
+          <div class="who-tag">New Relationships</div>
+          <h3>Start Strong, Not Over</h3>
+          <p>You're tired of carrying old patterns into new love. You want to build something real from the start — with the tools, language, and self-awareness most couples spend decades trying to find.</p>
+        </div>
+      </div>
+      <div class="who-card reveal reveal-delay-1">
+        <div class="who-card-img"><div class="who-card-img-inner" style="background:url('https://images.unsplash.com/photo-1610747616618-748a95f976af?w=700&q=85') center/cover no-repeat"></div></div>
+        <div class="who-card-body">
+          <div class="who-tag">Long-Term Partners</div>
+          <h3>From Good to Extraordinary</h3>
+          <p>Your relationship is doing well — but you're ambitious about love. You know there's more depth, more aliveness, more genuine intimacy available. You're ready to go there together.</p>
+        </div>
+      </div>
+      <div class="who-card reveal reveal-delay-2">
+        <div class="who-card-img"><div class="who-card-img-inner" style="background:url('https://images.unsplash.com/photo-1552334948-2909bae733e0?w=700&q=85') center/cover no-repeat"></div></div>
+        <div class="who-card-body">
+          <div class="who-tag">At a Crossroads</div>
+          <h3>One Last, Honest Try</h3>
+          <p>Something isn't working. Despite real difficulty, there's still love — and you're willing to do the real work. To look clearly at yourself and your partner, and choose transformation over avoidance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 1 -->
+<div class="quote-band">
+  <div class="qb-forest quote-band-bg" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80') center/cover no-repeat;opacity:1;"></div>
+  <div class="quote-band-inner">
+    <span class="quote-mark-big">"</span>
+    <p class="quote-q">Soulmates are not found. They are built — through honest conversations, chosen vulnerability, and the daily decision to grow together rather than apart.</p>
+    <div class="quote-rule"></div>
+    <span class="quote-attr">Soulmate Academy</span>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="section programs-section" id="programs">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Three ways to work together</span>
+    <h2 class="headline reveal">Choose Your <em>Path</em></h2>
+    <p class="lead reveal">Each program is a different depth of the same work. Most transformative journeys begin with the Virtual Academy and culminate with the Retreat.</p>
+    <div class="programs-grid">
+      <a href="#curriculum" class="prog-card reveal">
+        <div class="prog-card-top">
+          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=700&q=80') center/cover no-repeat"></div>
+          <span class="prog-badge">10 Weeks · Online</span>
+        </div>
+        <div class="prog-card-body">
+          <div class="prog-tag">Foundation Program</div>
+          <h3>Virtual Soulmate Academy</h3>
+          <p>20 modules across 3 sections. Two live expert sessions per week, one group coaching session, and weekly partner exercises. The full curriculum — communication, shadow work, intimacy, values, abundance.</p>
+          <div class="prog-footer">
+            <div class="prog-price">$1,297 <small>/ couple</small></div>
+            <span class="prog-cta">Learn more →</span>
+          </div>
+        </div>
+      </a>
+      <a href="#waitlist" class="prog-card reveal reveal-delay-1">
+        <div class="prog-card-top">
+          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80') center/cover no-repeat"></div>
+          <span class="prog-badge prog-badge-gold">🌿 Bali · June 2026</span>
+        </div>
+        <div class="prog-card-body">
+          <div class="prog-tag">Signature Experience</div>
+          <h3>The Soulmate Retreat</h3>
+          <p>4 days immersed in nature, community, and deep work. Glamping in Ubud's jungle. Fireside rituals, breathwork at dawn, expert workshops, and transformation that happens when you fully step away.</p>
+          <div class="prog-footer">
+            <div class="prog-price">$4,997 <small>/ couple</small></div>
+            <span class="prog-cta">Join waitlist →</span>
+          </div>
+        </div>
+      </a>
+      <a href="mailto:hello@soulmate-academy.com" class="prog-card reveal reveal-delay-2">
+        <div class="prog-card-top">
+          <div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=700&q=80') center 30%/cover no-repeat"></div>
+          <span class="prog-badge">75 min · Flexible</span>
+        </div>
+        <div class="prog-card-body">
+          <div class="prog-tag">Personalised Support</div>
+          <h3>Private Coaching</h3>
+          <p>One-to-one sessions with an expert relationship coach, tailored entirely to your dynamics. Ideal as standalone deep dives or as accelerated support alongside the Virtual Academy.</p>
+          <div class="prog-footer">
+            <div class="prog-price">$397 <small>/ session</small></div>
+            <span class="prog-cta">Book now →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="section curriculum-section" id="curriculum">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Virtual Program · 3 Sections · 20 Modules</span>
+    <h2 class="headline reveal">The Full <em>Curriculum</em></h2>
+    <div class="curr-intro reveal">
+      <p>Redesigned from the ground up by relationship coaches, psychologists and somatic practitioners. Each section builds on the last — creating structural change, not just insight. Two live sessions per week, always recorded.</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="curr-section reveal">
+      <div class="curr-header ch-1">
+        <span class="curr-sec-tag">Section 1</span>
+        <span class="curr-sec-name">Communication, Self-Understanding &amp; Shadow</span>
+        <span class="curr-sec-dur">4 Weeks · 8 Sessions</span>
+      </div>
+      <div class="curr-modules">
+        <div class="curr-mod">
+          <span class="curr-mod-num">01</span>
+          <div>
+            <h4>Authentic Communication</h4>
+            <p>Navigate conflict, express needs without blame, decode emotional cues, and build a container of genuine safety for both partners.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">02</span>
+          <div>
+            <h4>Deep Intimacy Beyond the Physical</h4>
+            <p>Redefine intimacy as emotional, spiritual and erotic connection. Cultivate mindful presence, harmonise desires, and dissolve the barriers to true closeness.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">03</span>
+          <div>
+            <h4>Shadow Work &amp; Hidden Patterns</h4>
+            <p>Identify unconscious beliefs and inherited behaviours shaping your relationship. Transform reactive patterns before they cause further rupture.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">04</span>
+          <div>
+            <h4>Giving &amp; Receiving Feedback</h4>
+            <p>Master the balance between honesty and care. Turn criticism into connection, and feedback into a profound act of love and respect.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">05</span>
+          <div>
+            <h4>Conflict as a Doorway</h4>
+            <p>Use disagreement as a pathway to depth. Learn de-escalation, repair rituals, and how to fight in ways that bring you closer rather than further apart.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">06</span>
+          <div>
+            <h4>Navigating Life's Evolutions</h4>
+            <p>Relationships transform through children, career changes, relocation, loss. Learn to evolve together rather than grow apart through life's biggest transitions.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">07</span>
+          <div>
+            <h4>Past Relationships as Teachers</h4>
+            <p>Mine your history for gold. Understand how your relational past shapes your present, and use those patterns as a map toward conscious partnership.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">08</span>
+          <div>
+            <h4>Making Coaching &amp; Therapy Work</h4>
+            <p>Harness the full power of professional support. Set goals, track progress, and integrate insights so that every investment in growth creates lasting change.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="curr-section reveal">
+      <div class="curr-header ch-2">
+        <span class="curr-sec-tag">Section 2</span>
+        <span class="curr-sec-name">Your Love Amplified — Values, Identity &amp; Core Beliefs</span>
+        <span class="curr-sec-dur">3 Weeks · 6 Sessions</span>
+      </div>
+      <div class="curr-modules">
+        <div class="curr-mod">
+          <span class="curr-mod-num">09</span>
+          <div>
+            <h4>Soulful Connection &amp; Shared Identity</h4>
+            <p>Explore love, spirituality, culture and individuality as the tapestry of your relationship. Honour difference as a source of richness rather than friction.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">10</span>
+          <div>
+            <h4>Your Relational Ecosystem</h4>
+            <p>Cultivate a community that nourishes your partnership. Set healthy boundaries with family and friends, and navigate complex social dynamics as a team.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">11</span>
+          <div>
+            <h4>Taming Complex Emotions</h4>
+            <p>Work with jealousy, insecurity, anger, dependency and resentment at their roots — not their symptoms. Develop true emotional mastery together.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">12</span>
+          <div>
+            <h4>Roles, Power &amp; Equality</h4>
+            <p>Examine how gender, expectation and imbalance shape your dynamic. Build a truly equitable partnership where both feel fully seen and valued.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">13</span>
+          <div>
+            <h4>Defining Your Love Structure</h4>
+            <p>Explore the full spectrum of relational forms with curiosity and openness. Define your own conscious agreements rather than inheriting someone else's defaults.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">14</span>
+          <div>
+            <h4>Family, Children &amp; Legacy</h4>
+            <p>Navigate the deeply personal questions: children, fertility, adoption, parenting philosophy, and the kind of legacy — emotional and material — you want to create together.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="curr-section reveal">
+      <div class="curr-header ch-3">
+        <span class="curr-sec-tag">Section 3</span>
+        <span class="curr-sec-name">Beyond the Vows — Abundance, Adventure &amp; Shared Vision</span>
+        <span class="curr-sec-dur">3 Weeks · 6 Sessions</span>
+      </div>
+      <div class="curr-modules">
+        <div class="curr-mod">
+          <span class="curr-mod-num">15</span>
+          <div>
+            <h4>Money, Wealth &amp; Financial Partnership</h4>
+            <p>Transform financial conversations from a source of tension to a foundation for security. Align on shared wealth, individual freedom, and a plan for abundance.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">16</span>
+          <div>
+            <h4>Career, Ambition &amp; Shared Success</h4>
+            <p>Navigate the interplay between individual ambitions and partnership goals. Prevent burnout, support each other's growth, and build a life you both find meaningful.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">17</span>
+          <div>
+            <h4>Health, Longevity &amp; Vitality Together</h4>
+            <p>Understand how wellbeing — physical, emotional, spiritual — is deeply relational. Create shared health rituals and a roadmap to a long, vital life together.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">18</span>
+          <div>
+            <h4>Adventure, Play &amp; Shared Passions</h4>
+            <p>Reignite the pleasure of being together. Transform individual interests into shared adventures and create the kind of life that neither of you could build alone.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">19</span>
+          <div>
+            <h4>Designing Your Life on Your Terms</h4>
+            <p>Challenge conventional structures. Whether digital nomads, homesteaders or urban pioneers — build a life that reflects your values, not inherited expectations.</p>
+          </div>
+        </div>
+        <div class="curr-mod">
+          <span class="curr-mod-num">20</span>
+          <div>
+            <h4>Your Shared Vision &amp; Relationship Blueprint</h4>
+            <p>The capstone: articulate your shared destiny. Set joint goals, design your relationship rituals, and walk away with a living document — your personal relationship blueprint.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-section">
+  <div class="section-inner">
+    <span class="eyebrow reveal">The Virtual Program</span>
+    <h2 class="headline reveal">How It <em>Works</em></h2>
+    <div class="how-grid">
+      <div class="how-img-wrap reveal">
+        <div class="how-img-bg" style="background:url('https://images.unsplash.com/photo-1552334948-2909bae733e0?w=800&q=85') center/cover no-repeat;width:100%;height:100%"></div>
+        <div class="how-img-overlay">
+          <p class="how-img-caption">"Remove the noise of daily life — and watch what becomes possible between two people."</p>
+        </div>
+      </div>
+      <div class="how-items reveal">
+        <div class="how-item">
+          <div class="how-icon">🎥</div>
+          <div>
+            <h4>2 × 1hr Expert Content Sessions Weekly</h4>
+            <p>20 live sessions total across 10 weeks — covering 2 modules each. Theory meets practice. Recordings available for every session so you never miss progress.</p>
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-icon">👥</div>
+          <div>
+            <h4>1 × 90min Group Coaching Session Weekly</h4>
+            <p>10 facilitated group sessions with other couples on the same journey. Share, witness, and gain perspectives that no private session can replicate. Ongoing monthly group available after the program.</p>
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-icon">📋</div>
+          <div>
+            <h4>Weekly Partner Exercises &amp; Conversation Guides</h4>
+            <p>Carefully designed practices to integrate insights into your daily life. Not homework — experiences that open conversations you've never had before.</p>
+          </div>
+        </div>
+        <div class="how-item">
+          <div class="how-icon">🎯</div>
+          <div>
+            <h4>Optional 1:1 Coaching Support</h4>
+            <p>On-demand private sessions with specialist coaches covering topics from the curriculum. Available at $397/session for couples who want to go deeper, faster.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section" id="about">
+  <!-- Full-width quote band with forest background -->
+  <div class="phil-quote-band">
+    <div class="phil-quote-bg" style="background:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=85') center/cover no-repeat;"></div>
+    <div class="phil-quote-overlay"></div>
+    <div class="phil-quote-inner">
+        <div>
+          <span class="quote-mark-big" style="color:var(--gold);opacity:0.5;">"</span>
+          <p class="quote-q" style="font-size:clamp(1.6rem,3vw,2.4rem);">The strength of a relationship lies in accepting differences, celebrating similarities, and fostering an environment where both can flourish.</p>
+          <div class="quote-rule"></div>
+        </div>
+    </div>
+  </div>
+  <div class="phil-grid-solo">
+    <div class="phil-content">
+      <span class="eyebrow">Our Philosophy</span>
+      <h2 class="headline">Love Is a <em>Practice</em>, Not a Destination</h2>
+      <div class="principles">
+        <div class="principle">
+          <span class="prin-num">01</span>
+          <div>
+            <h4>Consciousness over chemistry</h4>
+            <p>The butterflies fade. What sustains love is the willingness to keep choosing each other — with eyes wide open. We teach the skills that keep that choice alive.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="prin-num">02</span>
+          <div>
+            <h4>Vulnerability is the real work</h4>
+            <p>Every wall built for protection is also a wall that blocks connection. We create the conditions where it's safe to be fully seen — and fully known.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="prin-num">03</span>
+          <div>
+            <h4>Nature amplifies transformation</h4>
+            <p>When you remove the noise of ordinary life and place couples in the stillness of nature, something shifts that no office or screen can replicate. That's why we retreat.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="prin-num">04</span>
+          <div>
+            <h4>Community accelerates growth</h4>
+            <p>Witnessing other couples do the same work creates courage you cannot manufacture alone. Our group format is not a compromise — it is a core part of the method.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BALI RETREAT HERO -->
+<section class="bali-hero" id="retreat">
+  <div class="bali-content">
+    <div class="bali-offer-label">Retreat Offer · Bali 2026 · Limited to 30 Couples</div>
+    <div class="bali-inner">
+      <span class="eyebrow">The Soulmate Retreat · Bali 2026</span>
+      <h2 class="headline">Four Days.<br>One <em>Jungle</em>.<br>Everything Changes.</h2>
+      <p class="bali-tagline">Ubud, Bali. June 2026. 30 couples. Glamping in the jungle, fireside ceremonies at night, breathwork as the sun rises over rice terraces — and the deep workshop work that transforms how you love each other. This is not a holiday. It is an initiation.</p>
+      <div class="bali-june">
+        <div class="bali-june-dot"></div>
+        <span>📍 Ubud, Bali &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; Waitlist Now Open</span>
+      </div>
+      <div class="bali-stats">
+        <div><span class="bs-num">30</span><span class="bs-label">Couples maximum</span></div>
+        <div><span class="bs-num">4</span><span class="bs-label">Days immersive</span></div>
+        <div><span class="bs-num">14+</span><span class="bs-label">Expert sessions</span></div>
+        <div><span class="bs-num">100%</span><span class="bs-label">All-inclusive</span></div>
+      </div>
+      <div class="hero-ctas" style="justify-content:flex-start;">
+        <a href="#waitlist" class="btn-gold">Join the Bali Waitlist</a>
+        <a href="#retreat-details" class="btn-ghost">See the program</a>
+      </div>
+    </div>
+  </div>
+  <!-- Bali photo right column -->
+  <div class="bali-hero-photo">
+    <img src="https://images.unsplash.com/photo-1557093793-d149a38a1be8?w=900&q=85" alt="Bali rice terraces Ubud jungle">
+  </div>
+</section>
+
+<!-- QUOTE 2 -->
+<div class="quote-band">
+  <div class="qb-fire quote-band-bg" style="background:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=1600&q=80') center/cover no-repeat;opacity:1;"></div>
+  <div class="quote-band-inner">
+    <span class="quote-mark-big">"</span>
+    <p class="quote-q">Healthy relationships include uncomfortable conversations. The fire doesn't judge. The forest doesn't rush. This is where the real ones happen.</p>
+    <div class="quote-rule"></div>
+    <span class="quote-attr">Soulmate Academy Retreat</span>
+  </div>
+</div>
+
+<!-- RETREAT DETAILS -->
+<section class="section retreat-details" id="retreat-details">
+  <div class="section-inner">
+    <span class="eyebrow reveal">The 4-Day Journey</span>
+    <h2 class="headline reveal">Intentionally Designed, <em>Day by Day</em></h2>
+    <p class="lead reveal">Mornings for presence and movement. Days for depth and truth. Evenings for fire, music, and the conversations that reshape everything. Theory lived in the body — not just heard with the mind.</p>
+    <div class="retreat-grid">
+
+      <div class="day-card reveal">
+        <div class="day-card-img" style="background:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80') center/cover no-repeat"></div>
+        <div class="day-card-body">
+          <div class="day-label">Day 1 — Arrival</div>
+          <h3>Arriving Together</h3>
+          <ul class="day-acts">
+            <li>Jungle glamping check-in &amp; sacred Balinese welcome ceremony</li>
+            <li>Gentle opening yoga — releasing travel, arriving in the body</li>
+            <li>Workshop: Who Are We Now? — Foundations of conscious relationship</li>
+            <li>Guided rice terrace walk — silent paired presence practice</li>
+            <li>Farm-to-table welcome dinner under the stars</li>
+            <li>Opening fireside circle with live guitar — stories, intentions &amp; community</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card reveal reveal-delay-1">
+        <div class="day-card-img" style="background:url('https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=700&q=80') center/cover no-repeat"></div>
+        <div class="day-card-body">
+          <div class="day-label">Day 2 — The Language of Love</div>
+          <h3>Communication &amp; Vulnerability</h3>
+          <ul class="day-acts">
+            <li>Sunrise breathwork &amp; somatic awakening by the jungle</li>
+            <li>Partner yoga flow — trust, co-regulation &amp; physical attunement</li>
+            <li>Workshop: The Art of Being Heard — communication patterns &amp; listening beyond words</li>
+            <li>Workshop: Vulnerability is the Real Work — walls, wounds &amp; what we protect</li>
+            <li>Free afternoon: Balinese spa, jungle walks, journaling, rest</li>
+            <li>Fireside sharing circle — couples share one truth, music &amp; song</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card reveal reveal-delay-2">
+        <div class="day-card-img" style="background:url('https://images.unsplash.com/photo-1552334948-2909bae733e0?w=700&q=80') center/cover no-repeat"></div>
+        <div class="day-card-body">
+          <div class="day-label">Day 3 — The Deep Dive</div>
+          <h3>Intimacy, Shadow &amp; Abundance</h3>
+          <ul class="day-acts">
+            <li>Sunrise meditation at the jungle edge — together in silence</li>
+            <li>Somatic release yoga — opening the heart centre &amp; letting go</li>
+            <li>Workshop: Desire &amp; Intimacy — what stands between you &amp; what's possible</li>
+            <li>Workshop: Shadow Work &amp; the Body's Story — attachment, triggers &amp; old patterns</li>
+            <li>Workshop: Money, Power &amp; Partnership — financial values &amp; shared abundance</li>
+            <li>Fire ritual: releasing the old, claiming the new — guided ceremony</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card reveal reveal-delay-3">
+        <div class="day-card-img" style="background:url('https://images.unsplash.com/photo-1610747616618-748a95f976af?w=700&q=80') center bottom/cover no-repeat"></div>
+        <div class="day-card-body">
+          <div class="day-label">Day 4 — Integration &amp; Vision</div>
+          <h3>Commitment &amp; the Road Ahead</h3>
+          <ul class="day-acts">
+            <li>Final sunrise yoga — gratitude flow &amp; stillness as a couple</li>
+            <li>Workshop: Your Shared Vision — designing your relationship blueprint together</li>
+            <li>Private reflection time: love letters &amp; intentions written to each other</li>
+            <li>Closing ceremony &amp; private commitment renewal — witnessed by the community</li>
+            <li>Farewell feast — music, celebration &amp; gratitude for the journey</li>
+            <li>Post-retreat integration call with your coach, 3 weeks after</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="section included-section">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="color:var(--gold-pale);">Everything Included</span>
+    <h2 class="headline reveal" style="color:#fff; max-width:600px;">All-Inclusive. <em style="color:var(--gold);">Nothing Left to Arrange.</em></h2>
+    <div class="inc-grid">
+      <div class="inc-card reveal"><span class="inc-icon">⛺</span><h4>Jungle Glamping</h4><p>3 nights in a beautifully appointed eco-tent in Ubud's jungle canopy. Real beds, ambient lighting, private space — nature without sacrifice.</p></div>
+      <div class="inc-card reveal reveal-delay-1"><span class="inc-icon">🌿</span><h4>All Meals &amp; Drinks</h4><p>Farm-to-table Balinese cuisine across every meal. Nourishing, communal, and prepared with intention by our kitchen team.</p></div>
+      <div class="inc-card reveal reveal-delay-2"><span class="inc-icon">🔥</span><h4>Fireside Evenings</h4><p>Each night ends around the fire — rituals, reflection, and the particular alchemy of flame, jungle air, and honest community.</p></div>
+      <div class="inc-card reveal"><span class="inc-icon">🧘</span><h4>Expert Workshops &amp; Breathwork</h4><p>12+ facilitated sessions with our relationship coaches. Dawn somatic practice, deep workshops, and Balinese healing traditions woven throughout.</p></div>
+      <div class="inc-card reveal reveal-delay-1"><span class="inc-icon">📔</span><h4>Retreat Journal &amp; Blueprint</h4><p>Your personal relationship blueprint workbook — a living document you take home and return to for years.</p></div>
+      <div class="inc-card reveal reveal-delay-2"><span class="inc-icon">🤝</span><h4>Community &amp; Integration Support</h4><p>A private post-retreat community, 3-week integration call, and ongoing connection with the couples who shared this journey with you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BALI LOCATION -->
+<section class="section locations-section">
+  <div class="section-inner">
+    <span class="eyebrow reveal" style="color:var(--gold);">First Retreat Location</span>
+    <h2 class="headline reveal" style="color:#fff; max-width:680px;">Why <em style="color:var(--gold);">Bali</em> Changes Everything</h2>
+    <div class="loc-bali-feature">
+      <div class="loc-img reveal">
+        <div class="loc-img-bali" style="background:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80') center/cover no-repeat;width:100%;height:100%"></div>
+      </div>
+      <div class="loc-content reveal">
+        <h3 class="headline">Ubud, Bali — <em>June 2026</em></h3>
+        <p>Bali is not a backdrop. It is a participant in your transformation. Ubud's ancient rice terraces, jungle rivers and sacred temple energy create a field in which people open up, slow down and access parts of themselves they forgot existed. The Balinese concept of <em>Tri Hita Karana</em> — harmony with people, nature and the divine — becomes the invisible framework of your retreat experience.</p>
+        <div class="loc-details">
+          <div class="loc-detail"><div class="loc-detail-label">Location</div><div class="loc-detail-val">Ubud, Bali · Jungle eco-venue</div></div>
+          <div class="loc-detail"><div class="loc-detail-label">Season</div><div class="loc-detail-val">June 2026 · Dry season, 28°C</div></div>
+          <div class="loc-detail"><div class="loc-detail-label">Capacity</div><div class="loc-detail-val">30 couples · Waitlist only</div></div>
+          <div class="loc-detail"><div class="loc-detail-label">Next dates</div><div class="loc-detail-val">Bali 2026 → Madrid &amp; Buenos Aires TBC</div></div>
+        </div>
+        <div class="loc-honeymoon">
+          <p>🌺 <strong>Stay on after the retreat.</strong> Many couples choose to spend 1–2 weeks exploring Bali after the retreat — a natural "relationship honeymoon." From Ubud's temple culture to Canggu's beaches and Nusa Penida's cliffs, we can help you plan the perfect post-retreat Bali adventure. Just mention it in your waitlist form.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery">
+  <div class="gal-cell"><div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1557093793-d149a38a1be8?w=500&q=85') center/cover no-repeat"></div></div>
+  <div class="gal-cell"><div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1576475706812-822620fc23ba?w=500&q=85') center/cover no-repeat"></div></div>
+  <div class="gal-cell"><div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1656247203824-3d6f99461ba4?w=500&q=85') center/cover no-repeat"></div></div>
+  <div class="gal-cell"><div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1500839893470-6a3b8549492a?w=500&q=85') center/cover no-repeat"></div></div>
+  <div class="gal-cell"><div style="width:100%;height:100%;background:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=85') center/cover no-repeat"></div></div>
+</div>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Choose your path</span>
+    <h2 class="headline reveal">Your Level of <em>Commitment</em></h2>
+    <p class="lead reveal">Every relationship is different — and so is every couple's readiness. Choose based on how much time you have, how deep you want to go, and how quickly you want to see change. You can start with one program and add more later, or go all-in with all three for the fastest, deepest transformation possible.</p>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-tag">Virtual Program</div>
+        <h3>Soulmate Academy Online</h3>
+        <p class="price-desc">The complete 10-week curriculum. 20 content sessions, 10 group coaching sessions, weekly partner exercises, and ongoing recordings. The full foundation — from anywhere in the world.</p>
+        <div class="price-amount"><span>$1,297</span><small>/ couple</small></div>
+        <div class="price-context">Or 3 payments of $449</div>
+        <ul class="price-list">
+          <li>20 live expert sessions (recorded)</li>
+          <li>10 group coaching sessions</li>
+          <li>20 module curriculum</li>
+          <li>Weekly partner exercises</li>
+          <li>Private cohort community</li>
+        </ul>
+        <a href="mailto:hello@soulmate-academy.com" class="btn-price btn-price-outline">Apply Now</a>
+      </div>
+      <div class="price-card featured reveal reveal-delay-1">
+        <div class="price-popular">🌿 First Retreat · Bali</div>
+        <div class="price-tag">Signature Experience</div>
+        <h3>The Soulmate Retreat</h3>
+        <p class="price-desc">Three days fully immersed in Bali's jungle. Glamping, fireside rituals, expert workshops, and the transformation that only happens when you step completely away.</p>
+        <div class="price-amount"><span>$4,997</span><small>/ couple</small></div>
+        <div class="price-context">Deposit $997 to secure · Balance 60 days prior</div>
+        <ul class="price-list">
+          <li>2 nights jungle glamping</li>
+          <li>All meals &amp; drinks included</li>
+          <li>12+ expert-led sessions</li>
+          <li>Fireside ceremonies &amp; breathwork</li>
+          <li>Retreat journal &amp; blueprint</li>
+          <li>Post-retreat integration call</li>
+        </ul>
+        <a href="#waitlist" class="btn-price btn-price-gold">Join the Waitlist</a>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <div class="price-tag">Private Coaching</div>
+        <h3>1:1 Coaching Sessions</h3>
+        <p class="price-desc">Dedicated time with an expert relationship coach, tailored entirely to your specific dynamics. Standalone sessions or ongoing support alongside the virtual program.</p>
+        <div class="price-amount"><span>$397</span><small>/ session</small></div>
+        <div class="price-context">Packages of 4 sessions: $1,397</div>
+        <ul class="price-list">
+          <li>75-minute live session</li>
+          <li>Pre-session intake form</li>
+          <li>Session notes &amp; insights</li>
+          <li>Personalised practice exercises</li>
+          <li>Follow-up message check-in</li>
+        </ul>
+        <a href="mailto:hello@soulmate-academy.com" class="btn-price btn-price-outline">Book a Session</a>
+      </div>
+    </div>
+    <p class="pricing-note">All programs are investment in your most important relationship. <a href="mailto:hello@soulmate-academy.com">Contact us</a> if you'd like to discuss payment options or have questions before applying.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section" id="testimonials">
+  <div class="section-inner">
+    <span class="eyebrow reveal">From the community</span>
+    <h2 class="headline reveal">Couples Who Did <em>the Work</em></h2>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <p class="test-q">Before the Academy, we were two people sharing a home but not really sharing our lives. It gave us language for things we'd never been able to say — and the courage to say them.</p>
+        <div class="test-author"><strong>Mireille &amp; Daniel</strong><span>Together 7 years · Virtual Academy + Retreat</span></div>
+      </div>
+      <div class="test-card reveal reveal-delay-1">
+        <p class="test-q">Three days in the jungle changed more than three years of weekly sessions. Something about the fire, the forest, and being surrounded by other couples willing to be honest — it broke everything open.</p>
+        <div class="test-author"><strong>Theo &amp; Priya</strong><span>Together 4 years · The Soulmate Retreat</span></div>
+      </div>
+      <div class="test-card reveal reveal-delay-2">
+        <p class="test-q">Our coach saw dynamics between us that we'd been blind to for years. One session unlocked more than months of trying alone. I wish we'd found this five years earlier.</p>
+        <div class="test-author"><strong>Sebastián &amp; Margot</strong><span>Together 11 years · Private Coaching</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE 3 -->
+<div class="quote-band">
+  <div class="qb-teal quote-band-bg" style="background:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80') center/cover no-repeat;opacity:1;"></div>
+  <div class="quote-band-inner">
+    <span class="quote-mark-big">"</span>
+    <p class="quote-q">The most radical thing two people can do is choose to be fully honest with each other. That's where all the real love lives.</p>
+    <div class="quote-rule"></div>
+    <span class="quote-attr">Soulmate Academy</span>
+  </div>
+</div>
+
+<!-- WAITLIST FORM -->
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <div class="waitlist-header">
+      <span class="eyebrow" style="color:var(--gold);">Bali · June 2026 · 30 Couples Only</span>
+      <h2 class="headline">Join the <em>Waitlist</em></h2>
+      <p>We're building this first cohort carefully — 30 couples who are genuinely ready for transformation. Tell us about yourselves and what you're hoping for. We'll be in touch within 72 hours.</p>
+    </div>
+
+    <div class="form-card" id="formCard">
+      <div class="form-notice">
+        <span class="form-notice-icon">🌿</span>
+        <p><strong>Joining the waitlist is free and non-binding.</strong> Once we review your application, our team will reach out to answer questions and confirm your spot. A deposit of $997 secures your place — the remaining $4,000 is due 60 days before the retreat.</p>
+      </div>
+
+      <form id="waitlistForm" name="waitlist" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/success">
+        <input type="hidden" name="form-name" value="waitlist">
+        <input type="hidden" name="bot-field" style="display:none">
+        <div class="form-grid">
+          <div class="form-section-title">About You Both</div>
+
+          <div class="form-group">
+            <label class="form-label">Partner 1 — Full Name *</label>
+            <input type="text" class="form-input" placeholder="First and last name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Partner 2 — Full Name *</label>
+            <input type="text" class="form-input" placeholder="First and last name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country of Residence *</label>
+            <input type="text" class="form-input" placeholder="e.g. Spain, USA, Brazil" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">How long have you been together? *</label>
+            <select class="form-select" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Less than 1 year</option>
+              <option>1–3 years</option>
+              <option>3–7 years</option>
+              <option>7–15 years</option>
+              <option>15+ years</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Relationship Status</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select…</option>
+              <option>Dating / Partnered</option>
+              <option>Engaged</option>
+              <option>Married</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-section-title">Your Journey</div>
+
+          <div class="form-group form-full">
+            <label class="form-label">What's the main challenge or dynamic you'd most like to shift? *</label>
+            <textarea class="form-textarea" placeholder="Be as honest as you like. This stays between us. What keeps coming up? What have you been unable to change on your own?" required></textarea>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">What would transformation look like for your relationship?</label>
+            <textarea class="form-textarea" style="min-height:90px;" placeholder="If this retreat worked beyond your expectations — what would be different in your relationship 6 months from now?"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Which program interests you most? *</label>
+            <select class="form-select" required>
+              <option value="" disabled selected>Select…</option>
+              <option>Bali Retreat only (June 2026)</option>
+              <option>Virtual Academy only</option>
+              <option>Virtual Academy + Bali Retreat</option>
+              <option>Private Coaching</option>
+              <option>I'd like guidance on the right fit</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Have you done couples coaching before?</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select…</option>
+              <option>No, this would be our first time</option>
+              <option>Some couples therapy / coaching</option>
+              <option>Yes, extensively</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Interested in a post-retreat Bali extension?</label>
+            <select class="form-select">
+              <option value="" disabled selected>Select…</option>
+              <option>Yes — we'd love help planning 1–2 weeks in Bali</option>
+              <option>Maybe — tell us more</option>
+              <option>No, just the retreat</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Anything else you'd like us to know?</label>
+            <textarea class="form-textarea" style="min-height:80px;" placeholder="Any questions, context, or things that matter to you about this experience…"></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-submit">Apply for the Waitlist →</button>
+          <p class="form-privacy">Your information is completely private. We never share or sell your data. Joining the waitlist is free and creates no financial obligation.</p>
+        </div>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">🌿</div>
+        <h3>You're on the waitlist.</h3>
+        <p>Thank you for trusting us with your story. We'll review your application and reach out within 72 hours. In the meantime — take a breath. The fact that you're here means you're already doing something most couples never do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="cta-inner">
+    <span class="eyebrow reveal" style="text-align:center; display:block;">Ready to begin?</span>
+    <h2 class="headline reveal" style="text-align:center;">Your Next Chapter <em>Starts Here</em></h2>
+    <p class="lead reveal" style="text-align:center; margin:0 auto 2.5rem;">Every journey toward deeper love starts with a single, honest decision. Explore the programs or join the Bali waitlist — we'd love to hear from you.</p>
+    <div class="cta-btns reveal">
+      <a href="#waitlist" class="btn-gold">Join the Bali Waitlist</a>
+      <a href="mailto:hello@soulmate-academy.com" class="btn-forest">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="fl">Soulmate Academy</span>
+  <div class="footer-links">
+    <a href="#programs">Programs</a>
+    <a href="#curriculum">Curriculum</a>
+    <a href="#retreat">The Retreat</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#waitlist">Join Waitlist</a>
+    <a href="mailto:hello@soulmate-academy.com">Contact</a>
+  </div>
+  <p>Deepen your connection. Transform your love. Create a bond that lasts.</p>
+  <p style="margin-top:0.5rem;">© 2026 Soulmate Academy &nbsp;·&nbsp; <a href="mailto:hello@soulmate-academy.com">hello@soulmate-academy.com</a></p>
+</footer>
+
+<script>
+// Nav + announcement bar scroll behaviour
+const nav = document.getElementById('nav');
+const ann = document.querySelector('.announcement');
+window.addEventListener('scroll', () => {
+  const past = window.scrollY > 10;
+  nav.classList.toggle('solid', window.scrollY > 60);
+  ann.classList.toggle('hidden', past);   // slides bar up
+  nav.style.top = past ? '0' : '52px';   // nav fills the gap
+}, { passive: true });
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+revealEls.forEach(el => io.observe(el));
+
+// Waitlist form
+document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+  document.getElementById('formCard').querySelector('.form-notice').style.display = 'none';
+});
+</script>
+</body>
+</html>
